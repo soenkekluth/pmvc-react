@@ -1,4 +1,4 @@
-# PMVC (PureMVC) - React
+# PMVC (PureMVC) - React Example
 
 ## Usage
 download or clone repo

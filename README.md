@@ -1,4 +1,4 @@
-# PMVC (PureMVC) - React Example
+# [PMVC (PureMVC)](https://github.com/soenkekluth/pmvc) - React Example
 
 ## Usage
 download or clone repo

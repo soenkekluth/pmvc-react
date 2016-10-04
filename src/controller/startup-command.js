@@ -14,7 +14,7 @@
      console.log('StartupCommand execute()');
      super.execute(note);
      this.facade.removeCommand(NotificationNames.STARTUP);
-     this.sendNotification(NotificationNames.STARTUP_COMPLETE);
+     this.sendNotification(NotificationNames.RENDER);
    }
  }
 

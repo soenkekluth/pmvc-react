@@ -5,13 +5,18 @@ import './index.css';
 
 const initialState = {
   title: 'PMVC (PureMVC) - React',
-  description: 'pmvc app build with react as the view layer'
+  description: 'pmvc app build with react as the view layer',
+  clickCount: 0
 };
 
+const app = AppFacade.getInstance('app');
 
-const App = AppFacade.getInstance('app').startup(initialState);
+app.render = (cb) => {
+  return ReactDOM.render(
+    app.Component,
+    document.getElementById('root'),
+    cb
+  );
+};
 
-ReactDOM.render(
-  App.Component,
-  document.getElementById('root')
-);
+app.startup(initialState);

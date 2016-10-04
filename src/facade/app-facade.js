@@ -1,12 +1,13 @@
 import { Facade } from 'pmvc';
 import { NotificationNames } from '../constants';
+
+import AppMediator from '../view/AppMediator';
 import StartupCommand from '../controller/startup-command';
+import {RenderCommand, StateCommand} from '../controller/render-command';
 
 
 export default class AppFacade extends Facade {
   static NAME = 'AppFacade';
-
-  Component = null;
 
   static getInstance(key) {
     if (!key) {
@@ -20,6 +21,11 @@ export default class AppFacade extends Facade {
   }
 
 
+  get Component(){
+    return this.retrieveMediator(AppMediator.NAME).view;
+  }
+
+
   startup(initialState) {
     this.sendNotification(NotificationNames.STARTUP, initialState);
     return this;
@@ -29,8 +35,9 @@ export default class AppFacade extends Facade {
     return this;
   }
 
+  render(cb) {
 
-
+  }
 
   initializeView() {
     super.initializeView();
@@ -40,7 +47,7 @@ export default class AppFacade extends Facade {
   initializeController() {
     super.initializeController();
     this.registerCommand(NotificationNames.STARTUP, StartupCommand);
-    // this.registerCommand(NotificationNames.TEST, TestCommand);
-    // this.registerCommand( NotificationNames.STARTUP_COMPLETE, StartupCompleteCommand);
+    this.registerCommand(NotificationNames.STATE_UPDATE, StateCommand);
+    this.registerCommand(NotificationNames.RENDER, RenderCommand);
   }
 }

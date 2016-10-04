@@ -1,7 +1,7 @@
 {
   "name": "pmvc-react",
   "version": "0.1.0",
-  "homepage": "http://soenkekluth.github.io/pmvc-react",
+  "homepage": "https://soenkekluth.github.io/pmvc-react",
   "private": true,
   "devDependencies": {
     "react-scripts": "0.6.1"

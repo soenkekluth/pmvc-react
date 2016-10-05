@@ -3,7 +3,7 @@ import { NotificationNames } from '../constants';
 
 import AppMediator from '../view/AppMediator';
 import StartupCommand from '../controller/startup-command';
-import {RenderCommand, StateCommand} from '../controller/render-command';
+import {RenderCommand, StateChangeCommand} from '../controller/render-command';
 
 
 export default class AppFacade extends Facade {
@@ -47,7 +47,7 @@ export default class AppFacade extends Facade {
   initializeController() {
     super.initializeController();
     this.registerCommand(NotificationNames.STARTUP, StartupCommand);
-    this.registerCommand(NotificationNames.STATE_UPDATE, StateCommand);
+    this.registerCommand(NotificationNames.STATE_CHANGE, StateChangeCommand);
     this.registerCommand(NotificationNames.RENDER, RenderCommand);
   }
 }

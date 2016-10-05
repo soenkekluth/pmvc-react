@@ -1,10 +1,11 @@
 export const NotificationNames = {
-  STATE_UPDATE: 'STATE_UPDATE',
+  STATE_CHANGE: 'STATE_CHANGE',
   RENDER: 'RENDER',
   CLICK: 'CLICK',
-  SUBVIEW_COUNT: 'SUBVIEW_COUNT',
   STARTUP: 'STARTUP'
 };
 
-
-export const something = {};
+export const EventNames = {
+  SUBVIEW_GLOBAL_COUNT: 'SUBVIEW_GLOBAL_COUNT',
+  SUBVIEW_LOCAL_COUNT: 'SUBVIEW_LOCAL_COUNT'
+};

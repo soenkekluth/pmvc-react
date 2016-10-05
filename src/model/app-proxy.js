@@ -1,25 +1,16 @@
 import { Proxy } from 'pmvc';
-import { NotificationNames } from '../constants/index';
+import assign from 'object-assign';
+
+const initialState = {
+  title: 'PMVC (PureMVC) - React',
+  description: 'pmvc app build with react as the view layer'
+};
 
 export default class AppProxy extends Proxy {
   static NAME = 'AppProxy';
 
   constructor(data) {
-    super(AppProxy.NAME, data);
-  }
-
-
-  countClick() {
-    this.data.clickCount = this.data.clickCount +1;
-    this.sendNotification(NotificationNames.STATE_UPDATE, this.data);
-  }
-
-
-  onRegister() {
-    console.log('AppProxy registered');
-  }
-
-  onRemove() {
+    super(AppProxy.NAME, assign({}, initialState, data));
   }
 }
 

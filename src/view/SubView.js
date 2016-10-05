@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { EventNames } from '../constants';
 
 class SubView extends Component {
 
@@ -6,21 +7,26 @@ class SubView extends Component {
     super(props, context);
 
     this.state = {
-      count : 0
+      counterGlobal : 0,
+      counterLocal : 0
     }
   }
-  onClick(){
-
-    this.props.sendEvent('SUBVIEW_COUNT');
-
+  onClickGlobal(){
+    this.props.sendEvent(EventNames.SUBVIEW_GLOBAL_COUNT);
+  }
+  onClickLocal(){
+    this.props.sendEvent(EventNames.SUBVIEW_LOCAL_COUNT);
   }
   render() {
 
     return (
-      <div>Subview
-        <div>count {this.state.count}</div>
+      <div>
+        <h1>Subview</h1>
+        <p>global clicked {this.state.counterGlobal}</p>
+        <p>local clicked {this.state.counterLocal}</p>
         <p>
-          <button onClick={this.onClick.bind(this)}>Click me</button>
+          <button onClick={this.onClickGlobal.bind(this)}>click global</button>
+          <button onClick={this.onClickLocal.bind(this)}>click local</button>
         </p>
       </div>
     );

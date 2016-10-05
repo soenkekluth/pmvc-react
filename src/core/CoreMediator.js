@@ -1,8 +1,6 @@
-import React from 'react';
-import assign from 'object-assign';
 import { Mediator } from 'pmvc';
 
-export default class ReactMediator extends Mediator {
+export default class CoreMediator extends Mediator {
 
   notificationMap = {};
 
@@ -23,6 +21,7 @@ export default class ReactMediator extends Mediator {
 
   handleNotification(notification) {
     const handler = this.notificationMap[notification.getName()];
+    console.log(handler);
     if (handler) {
       handler.apply(null, [notification]);
     }
@@ -40,7 +39,7 @@ export default class ReactMediator extends Mediator {
 
 
   onRegister() {
-    console.log('ReactMediator registered');
+    console.log('CoreMediator registered');
   }
 
   onRemove() {

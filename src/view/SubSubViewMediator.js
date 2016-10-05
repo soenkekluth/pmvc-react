@@ -1,36 +1,22 @@
-import { Mediator } from 'pmvc';
+import CoreMediator from '../core/CoreMediator';
+import { NotificationNames } from '../constants/index';
+import CounterProxy from '../model/counter-proxy';
 
-import { NotificationNames, EventNames } from '../constants/index';
-
-export default class SubSubViewMediator extends Mediator {
+export default class SubSubViewMediator extends CoreMediator {
 
   static NAME = 'SubSubViewMediator';
 
-
-  listNotificationInterests() {
-    return [
-      NotificationNames.STATE_CHANGE
-    ];
+  constructor(name, view) {
+    super(name, view);
+    this.addNotificationHandler(NotificationNames.STATE_CHANGE, this.onStateChange.bind(this));
   }
 
-  handleNotification(notification) {
-    switch (notification.getName()) {
-
-      case NotificationNames.STATE_CHANGE:
-
-        console.log(this.view);
-        console.log('renderedView', this.renderedView);
-        break;
-
-        // case NotificationNames.STATE_CHANGE:
-        // if (notification.getType() === CounterProxy.NAME) {
-        //   this.view.setState(notification.getBody());
-        // }
-        // break;
-      default:
-        break;
+  onStateChange(notification) {
+    if (notification.getType() === CounterProxy.TYPE) {
+      // this.view.setState({
+      //   counterGlobal: this.counterGlobal.count,
+      //   counterLocal: this.counterLocal.count
+      // });
     }
   }
-
-
 }

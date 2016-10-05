@@ -1,7 +1,6 @@
 import ReactDOM from 'react-dom';
 import AppFacade from './facade/app-facade';
 import './index.css';
-console.log(AppFacade);
 
 const initialState = {
   app: {

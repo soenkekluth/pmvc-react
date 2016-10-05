@@ -3,7 +3,6 @@ import assign from 'object-assign';
 import { Mediator } from 'pmvc';
 import AppProxy from '../model/app-proxy';
 import CounterProxy from '../model/counter-proxy';
-import { NotificationNames } from '../constants';
 import App from './App';
 
 export default class AppMediator extends Mediator {

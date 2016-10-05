@@ -3,7 +3,6 @@ import assign from 'object-assign';
 import { Mediator } from 'pmvc';
 import AppProxy from '../model/app-proxy';
 import CounterProxy from '../model/counter-proxy';
-import SubviewMediator from './SubviewMediator';
 import { NotificationNames } from '../constants';
 import App from './App';
 
@@ -18,37 +17,15 @@ export default class AppMediator extends Mediator {
     super(AppMediator.NAME, null);
   }
 
-  listNotificationInterests() {
-    return [NotificationNames.RENDER];
-  }
-
-  handleNotification(notification) {
-    switch(notification.getName()){
-      case NotificationNames.RENDER:
-        if(!this.rootNode){
-          this.rootNode = notification.getBody();
-        }
-        if(!this.facade.hasMediator(SubviewMediator.NAME)){
-          const appView = notification.getBody();
-          this.facade.registerMediator(new SubviewMediator(SubviewMediator.NAME, appView.refs.subview));
-        }
-
-      break;
-      default:
-      break;
-    }
-  }
-
-
   sendEvent(name, body, type) {
     this.sendNotification(name, body, 'Event');
   }
 
 
   shouldComponentUpdate() {
-    if (this.rootNode) {
+    if (this.renderedView) {
       const props = assign({}, this.app.data, this.counter.data);
-      return this.rootNode.shouldComponentUpdate(props, null);
+      return this.renderedView.shouldComponentUpdate(props, null);
     }
     return true;
   }

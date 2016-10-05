@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { EventNames } from '../constants';
+import SubSubView from './SubSubView';
+import SubSubViewMediator from './SubSubViewMediator';
 
 class SubView extends Component {
 
@@ -28,7 +30,10 @@ class SubView extends Component {
           <button onClick={this.onClickGlobal.bind(this)}>click global</button>
           <button onClick={this.onClickLocal.bind(this)}>click local</button>
         </p>
-      </div>
+
+
+          <SubSubView Mediator={SubSubViewMediator} />
+       </div>
     );
   }
 }

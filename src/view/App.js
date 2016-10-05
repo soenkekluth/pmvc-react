@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import SubView from './SubView';
+import PMVCView from './PMVCView';
+import SubviewMediator from './SubviewMediator';
 
 class App extends Component {
 
@@ -48,8 +50,9 @@ class App extends Component {
         </p>
         <div>clicked {props.count}</div>
         <br/>
-        <SubView sendEvent={sendEvent} ref="subview"/>
-
+        <PMVCView Mediator={SubviewMediator}>
+          <SubView sendEvent={sendEvent} ref="subview"/>
+        </PMVCView>
       </div>
     );
   }

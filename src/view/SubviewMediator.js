@@ -48,6 +48,7 @@ export default class SubviewMediator extends Mediator {
   onRegister() {
     this.counterGlobal = this.facade.retrieveProxy(CounterProxy.NAME);
     this.counterLocal = this.facade.retrieveProxy(CounterProxy.NAME_LOCAL);
+    // console.log(this.view)
     this.view.setState({
       counterGlobal: this.counterGlobal.count,
       counterLocal: this.counterLocal.count

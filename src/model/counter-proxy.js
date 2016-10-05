@@ -3,30 +3,40 @@ import assign from 'object-assign';
 import { NotificationNames } from '../constants/index';
 
 const initialState = {
-  count : 0
+  count: 0
 };
 
 export default class CounterProxy extends Proxy {
 
-  static NAME = 'CounterProxy';
-  static NAME_SUB = 'CounterProxySub';
+  static TYPE = 'counter';
+  static NAME = 'counterGlobal';
+  static NAME_LOCAL = 'counterLocal';
 
   constructor(name, data) {
-    super(name, assign({}, initialState, data));
+    super(name);
+    this.data = assign({}, initialState, data);
   }
 
   up() {
-    this.data.count = this.data.count +1;
-    this.sendNotification(NotificationNames.STATE_CHANGE, this.data, CounterProxy.NAME);
+    this.setData({
+      count: this.data.count + 1
+    });
   }
 
   down() {
-    this.data.count = this.data.count -1;
-    this.sendNotification(NotificationNames.STATE_CHANGE, this.data, CounterProxy.NAME);
+    this.setData({
+      count: this.data.count - 1
+    });
   }
 
 
-  get count(){
+  setData(data) {
+    super.setData(data);
+    this.sendNotification(NotificationNames.STATE_CHANGE, this.data, CounterProxy.TYPE);
+  }
+
+
+  get count() {
     return this.data.count
   }
 }

@@ -8,9 +8,9 @@ export class ModelPrepCommand extends SimpleCommand {
   execute(note) {
     console.log('ModelPrepCommand execute()');
     const data = note.getBody();
-    this.facade.registerProxy(new AppProxy(data));
-    this.facade.registerProxy(new CounterProxy(CounterProxy.NAME));
-    this.facade.registerProxy(new CounterProxy(CounterProxy.NAME_SUB));
+    this.facade.registerProxy(new AppProxy(data[AppProxy.NAME]));
+    this.facade.registerProxy(new CounterProxy(CounterProxy.NAME, data[CounterProxy.NAME]));
+    this.facade.registerProxy(new CounterProxy(CounterProxy.NAME_LOCAL, data[CounterProxy.NAME_LOCAL]));
   }
 }
 

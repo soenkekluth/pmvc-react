@@ -26,7 +26,7 @@ export default class SubviewMediator extends Mediator {
         this.counterLocal.up();
         break;
       case NotificationNames.STATE_CHANGE:
-        if (notification.getType() === CounterProxy.NAME) {
+        if (notification.getType() === CounterProxy.TYPE) {
           this.view.setState({
             counterGlobal: this.counterGlobal.count,
             counterLocal: this.counterLocal.count
@@ -47,6 +47,10 @@ export default class SubviewMediator extends Mediator {
 
   onRegister() {
     this.counterGlobal = this.facade.retrieveProxy(CounterProxy.NAME);
-    this.counterLocal = this.facade.retrieveProxy(CounterProxy.NAME_SUB);
+    this.counterLocal = this.facade.retrieveProxy(CounterProxy.NAME_LOCAL);
+    this.view.setState({
+      counterGlobal: this.counterGlobal.count,
+      counterLocal: this.counterLocal.count
+    });
   }
 }

@@ -7,7 +7,7 @@ const initialState = {
 };
 
 export default class AppProxy extends Proxy {
-  static NAME = 'AppProxy';
+  static NAME = 'app';
 
   constructor(data) {
     super(AppProxy.NAME, assign({}, initialState, data));

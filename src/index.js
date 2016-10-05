@@ -4,6 +4,16 @@ import './index.css';
 
 
 const initialState = {
+  app: {
+    title: 'PMVC (PureMVC) - React',
+    description: 'pmvc app build with react as the view layer'
+  },
+  counterGlobal:{
+    count: 10
+  },
+  counterLocal:{
+    count: 5
+  }
 };
 
 const app = AppFacade.getInstance('app');

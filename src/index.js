@@ -2,18 +2,27 @@ import ReactDOM from 'react-dom';
 import AppFacade from './facade/app-facade';
 import './index.css';
 
-const initialState = {
+let data = {
   app: {
     title: 'PMVC (PureMVC) - React',
     description: 'pmvc app build with react as the view layer'
   },
   counterGlobal:{
-    count: 10
+    count: 0
   },
   counterLocal:{
-    count: 5
+    count: 0
   }
 };
+
+if(typeof(Storage) !== 'undefined') {
+  data = JSON.parse(localStorage.getItem('pmvc-react')) || data;
+}
+
+
+
+
+const initialState = data;
 
 const app = AppFacade.getInstance('app');
 

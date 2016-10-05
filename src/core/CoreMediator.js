@@ -21,7 +21,6 @@ export default class CoreMediator extends Mediator {
 
   handleNotification(notification) {
     const handler = this.notificationMap[notification.getName()];
-    console.log(handler);
     if (handler) {
       handler.apply(null, [notification]);
     }

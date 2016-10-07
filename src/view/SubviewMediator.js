@@ -1,6 +1,6 @@
 import CoreMediator from '../core/CoreMediator';
 import { NotificationNames, EventNames } from '../constants/index';
-import CounterProxy from '../model/counter-proxy';
+import CounterProxy from '../model/CounterProxy';
 
 export default class SubviewMediator extends CoreMediator {
 
@@ -13,12 +13,12 @@ export default class SubviewMediator extends CoreMediator {
     return [
       EventNames.SUBVIEW_GLOBAL_COUNT,
       EventNames.SUBVIEW_LOCAL_COUNT,
-      NotificationNames.STATE_CHANGE
+      NotificationNames.DATA_CHANGE
     ];
   }
 
   onStateChange(notification){
-    if (notification.getType() === CounterProxy.TYPE) {
+    if (notification.getType() === this.counterGlobal.getName() || notification.getType() === this.counterLocal.getName()) {
       this.view.setState({
         counterGlobal: this.counterGlobal.count,
         counterLocal: this.counterLocal.count
@@ -28,12 +28,12 @@ export default class SubviewMediator extends CoreMediator {
 
   onRegister() {
 
-    this.counterGlobal = this.facade.retrieveProxy(CounterProxy.NAME);
-    this.counterLocal = this.facade.retrieveProxy(CounterProxy.NAME_LOCAL);
+    this.counterGlobal = this.facade.getProxy(CounterProxy.NAME);
+    this.counterLocal = this.facade.getProxy(CounterProxy.NAME_LOCAL);
 
     this.addNotificationHandler(EventNames.SUBVIEW_GLOBAL_COUNT, this.counterGlobal.up.bind(this.counterGlobal));
     this.addNotificationHandler(EventNames.SUBVIEW_LOCAL_COUNT, this.counterLocal.up.bind(this.counterLocal));
-    this.addNotificationHandler(NotificationNames.STATE_CHANGE, this.onStateChange.bind(this));
+    this.addNotificationHandler(NotificationNames.DATA_CHANGE, this.onStateChange.bind(this));
 
     this.view.setState({
       counterGlobal: this.counterGlobal.count,

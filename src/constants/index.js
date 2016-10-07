@@ -1,5 +1,6 @@
 export const NotificationNames = {
   STATE_CHANGE: 'STATE_CHANGE',
+  DATA_CHANGE: 'DATA_CHANGE',
   RENDER: 'RENDER',
   CLICK: 'CLICK',
   STARTUP: 'STARTUP'

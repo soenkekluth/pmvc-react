@@ -1,8 +1,8 @@
 import React from 'react';
 import assign from 'object-assign';
 import { Mediator } from 'pmvc';
-import AppProxy from '../model/app-proxy';
-import CounterProxy from '../model/counter-proxy';
+import AppProxy from '../model/AppProxy';
+import CounterProxy from '../model/CounterProxy';
 import App from './App';
 
 export default class AppMediator extends Mediator {
@@ -17,7 +17,7 @@ export default class AppMediator extends Mediator {
   }
 
   sendEvent(name, body, type) {
-    this.sendNotification(name, body, 'Event');
+    this.send(name, body, 'Event');
   }
 
 
@@ -39,8 +39,8 @@ export default class AppMediator extends Mediator {
   onRegister() {
     console.log('AppMediator registered');
 
-    this.app = this.facade.retrieveProxy(AppProxy.NAME);
-    this.counter = this.facade.retrieveProxy(CounterProxy.NAME);
+    this.app = this.facade.getProxy(AppProxy.NAME);
+    this.counter = this.facade.getProxy(CounterProxy.NAME);
 
     this.onClickButton = this.onClickButton.bind(this);
     this.updateView();

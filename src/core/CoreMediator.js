@@ -26,12 +26,9 @@ export default class CoreMediator extends Mediator {
     }
   }
 
-  getProxy(name) {
-    return this.facade.retrieveProxy(name);
-  }
 
   sendEvent(name, body, type = 'Event') {
-    this.sendNotification(name, body, type);
+    this.send(name, body, type);
   }
 
   updateView() {}

@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom';
-import AppFacade from './facade/app-facade';
+import AppFacade from './facade/AppFacade';
 import './index.css';
 
 let data = {
@@ -20,18 +20,17 @@ if(typeof(Storage) !== 'undefined') {
 }
 
 
-
-
 const initialState = data;
-
 const app = AppFacade.getInstance('app');
+if(typeof document !== 'undefined') {
+  app.render = cb => {
+    return ReactDOM.render(
+      app.Component,
+      document.getElementById('root'),
+      cb
+    );
+  };
+}
 
-app.render = cb => {
-  return ReactDOM.render(
-    app.Component,
-    document.getElementById('root'),
-    cb
-  );
-};
 
 app.startup(initialState);

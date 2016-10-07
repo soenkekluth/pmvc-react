@@ -1,4 +1,4 @@
-import { Proxy } from 'pmvc';
+import CoreProxy from '../core/CoreProxy';
 import assign from 'object-assign';
 
 const initialState = {
@@ -6,7 +6,8 @@ const initialState = {
   description: 'pmvc app build with react as the view layer'
 };
 
-export default class AppProxy extends Proxy {
+export default class AppProxy extends CoreProxy {
+
   static NAME = 'app';
 
   constructor(data) {

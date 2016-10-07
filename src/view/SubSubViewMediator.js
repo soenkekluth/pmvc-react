@@ -1,6 +1,6 @@
 import CoreMediator from '../core/CoreMediator';
 import { NotificationNames } from '../constants/index';
-import CounterProxy from '../model/counter-proxy';
+import CounterProxy from '../model/CounterProxy';
 
 export default class SubSubViewMediator extends CoreMediator {
 
@@ -8,7 +8,7 @@ export default class SubSubViewMediator extends CoreMediator {
 
   constructor(name, view) {
     super(name, view);
-    this.addNotificationHandler(NotificationNames.STATE_CHANGE, this.onStateChange.bind(this));
+    this.addNotificationHandler(NotificationNames.DATA_CHANGE, this.onStateChange.bind(this));
   }
 
   onStateChange(notification) {

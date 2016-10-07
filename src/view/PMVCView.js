@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AppFacade from '../facade/app-facade';
+import AppFacade from '../facade/AppFacade';
 
 class PMVCView extends Component {
 
@@ -18,21 +18,21 @@ class PMVCView extends Component {
     super(props, context);
 
     if (this.__proto__.constructor !== PMVCView) {
-      this.registerMediator(this);
+      this.createMediator(this);
     }
   }
 
   componentDidMount() {
     if (this.refs.element) {
-      this.registerMediator(this.refs.element);
+      this.createMediator(this.refs.element);
     }
   }
 
-  registerMediator(view) {
+  createMediator(view) {
     if (this.props.Mediator) {
       const name = this.props.name || this.props.Mediator.NAME;
-      if (!AppFacade.getInstance('app').retrieveMediator(name)) {
-        AppFacade.getInstance('app').registerMediator(new this.props.Mediator(name, view));
+      if (!AppFacade.getInstance('app').getMediator(name)) {
+        AppFacade.getInstance('app').addMediator(new this.props.Mediator(name, view));
       }
     }
   }

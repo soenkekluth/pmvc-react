@@ -20,7 +20,6 @@ export default class AppMediator extends Mediator {
     this.send(name, body, 'Event');
   }
 
-
   shouldComponentUpdate() {
     if (this.renderedView) {
       const props = assign({}, this.app.data, this.counter.data);
@@ -29,12 +28,9 @@ export default class AppMediator extends Mediator {
     return true;
   }
 
-
-
   updateView(){
     this.setViewComponent(<App onClickButton={ this.onClickButton } sendEvent={this.sendEvent.bind(this)} {...this.app.data } {...this.counter.data }/>);
   }
-
 
   onRegister() {
     console.log('AppMediator registered');
@@ -45,7 +41,6 @@ export default class AppMediator extends Mediator {
     this.onClickButton = this.onClickButton.bind(this);
     this.updateView();
   }
-
 
   onClickButton(e) {
     this.counter.up();

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AppFacade from '../facade/AppFacade';
+
 
 class PMVCView extends Component {
 
@@ -14,9 +14,12 @@ class PMVCView extends Component {
   };
 
 
+  static contextTypes = {
+    facade: React.PropTypes.object
+  };
+
   constructor(props, context) {
     super(props, context);
-
     if (this.__proto__.constructor !== PMVCView) {
       this.createMediator(this);
     }
@@ -31,8 +34,9 @@ class PMVCView extends Component {
   createMediator(view) {
     if (this.props.Mediator) {
       const name = this.props.name || this.props.Mediator.NAME;
-      if (!AppFacade.getInstance('app').getMediator(name)) {
-        AppFacade.getInstance('app').addMediator(new this.props.Mediator(name, view));
+      const facade = this.context.facade;
+      if (!facade.getMediator(name)) {
+        facade.addMediator(new this.props.Mediator(name, view));
       }
     }
   }

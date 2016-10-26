@@ -1,10 +1,8 @@
-import React from 'react';
-import PMVCView from './PMVCView';
+import React, { Component } from 'react';
 
-class SubSubView extends PMVCView {
+export default class SubSubView extends Component {
 
   render() {
-
     return (
       <div>
         <h1>SubSubView</h1>
@@ -12,5 +10,3 @@ class SubSubView extends PMVCView {
     );
   }
 }
-
-export default SubSubView;

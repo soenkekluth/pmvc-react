@@ -13,9 +13,13 @@ export default class CoreProxy extends Proxy {
   }
 
   setData(data, sendNotification = true) {
-    this.data = assign({}, this.data, data);
+    console.log(data, sendNotification, this.facade)
+    super.setData(assign({}, this.data, data));
+
+
     if(sendNotification) {
-      this.send(NotificationNames.DATA_CHANGE, this.data, this.getName());
+      this.facade.sendNotification(NotificationNames.DATA_CHANGE, this.data, this.getName());
+      // this.facade.sendNotification(NotificationNames.DATA_CHANGE, this.data, this.getName());
     }
   }
 }

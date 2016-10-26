@@ -8,6 +8,7 @@ import DataChangeCommand from '../controller/DataChangeCommand';
 import assign from 'object-assign';
 
 export default class AppFacade extends Facade {
+
   static NAME = 'AppFacade';
 
   state = {};
@@ -23,14 +24,9 @@ export default class AppFacade extends Facade {
     return Facade.instanceMap[key];
   }
 
-
-  get Component() {
-    return this.getMediator(AppMediator.NAME).view;
-  }
-
-
   startup(initialState) {
-    this.send(NotificationNames.STARTUP, initialState);
+    this.state = assign({}, this.state, initialState);
+    this.send(NotificationNames.STARTUP, this.state);
     return this;
   }
 
@@ -38,6 +34,10 @@ export default class AppFacade extends Facade {
     return this;
   }
 
+  sendEvent(name, body, type) {
+    console.log('Facade sendEvent', name)
+    this.send(name, body, 'Event');
+  }
 
   updateState(chunk) {
     this.state = assign({}, this.state, chunk);
@@ -66,7 +66,6 @@ export default class AppFacade extends Facade {
   initializeView() {
     super.initializeView();
   }
-
 
   initializeController() {
     super.initializeController();

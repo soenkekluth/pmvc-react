@@ -9,18 +9,20 @@ class SubView extends Component {
     super(props, context);
 
     this.state = {
-      counterGlobal : 0,
-      counterLocal : 0
-    }
+      counterGlobal: 0,
+      counterLocal: 0
+    };
   }
-  onClickGlobal(){
-    this.props.sendEvent(EventNames.SUBVIEW_GLOBAL_COUNT);
-  }
-  onClickLocal(){
-    this.props.sendEvent(EventNames.SUBVIEW_LOCAL_COUNT);
-  }
-  render() {
 
+  onClickGlobal() {
+    // this.props.sendEvent(EventNames.SUBVIEW_GLOBAL_COUNT);
+  }
+
+  onClickLocal() {
+    // this.props.sendEvent(EventNames.SUBVIEW_LOCAL_COUNT);
+  }
+
+  render() {
     return (
       <div>
         <h1>Subview</h1>

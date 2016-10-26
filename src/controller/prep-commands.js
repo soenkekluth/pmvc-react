@@ -6,18 +6,19 @@ import AppMediator from '../view/AppMediator';
 export class ModelPrepCommand extends SimpleCommand {
   execute(note) {
     console.log('ModelPrepCommand execute()');
+    const initialState = note.getBody();
+    // this.facade.setState(data);
+
     // const data = note.getBody();
-    this.facade.addProxy(new AppProxy());
-    this.facade.addProxy(new CounterProxy(CounterProxy.NAME));
-    this.facade.addProxy(new CounterProxy(CounterProxy.NAME_LOCAL));
+    this.facade.addProxy(new AppProxy(null, initialState[AppProxy.NAME]));
+    this.facade.addProxy(new CounterProxy(CounterProxy.NAME, initialState[CounterProxy.NAME]));
+    this.facade.addProxy(new CounterProxy(CounterProxy.NAME_LOCAL, initialState[CounterProxy.NAME_LOCAL]));
   }
 }
 
-
 export class ViewPrepCommand extends SimpleCommand {
-
   execute(note) {
     console.log('ViewPrepCommand execute()');
-    this.facade.addMediator(new AppMediator());
+    // this.facade.addMediator(new AppMediator());
   }
 }

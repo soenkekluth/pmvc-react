@@ -4,7 +4,6 @@ export default class CoreMediator extends Mediator {
 
   notificationMap = {};
 
-
   addNotificationHandler(notificationName, handler) {
     this.notificationMap[notificationName] = handler;
   }
@@ -13,7 +12,6 @@ export default class CoreMediator extends Mediator {
     this.notificationMap[notificationName] = null;
     delete(this.notificationMap[notificationName]);
   }
-
 
   listNotificationInterests() {
     return Object.keys(this.notificationMap);
@@ -26,17 +24,9 @@ export default class CoreMediator extends Mediator {
     }
   }
 
-
-  sendEvent(name, body, type = 'Event') {
-    this.send(name, body, type);
-  }
-
-  updateView() {}
-
-
-  onRegister() {
-    console.log('CoreMediator registered');
-  }
+  // sendEvent(name, body, type = 'Event') {
+  //   this.send(name, body, type);
+  // }
 
   onRemove() {
     for (var key in this.notificationMap) {

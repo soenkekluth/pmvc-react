@@ -11,6 +11,7 @@ export default class SubSubViewMediator extends CoreMediator {
     this.addNotificationHandler(NotificationNames.DATA_CHANGE, this.onStateChange.bind(this));
   }
 
+
   onStateChange(notification) {
     if (notification.getType() === CounterProxy.TYPE) {
       // this.view.setState({

@@ -2,41 +2,39 @@ import ReactDOM from 'react-dom';
 import AppFacade from './facade/AppFacade';
 import React from 'react';
 import Provider from './core/Provider';
+import App from './view/App';
+import AppMediator from './view/AppMediator';
 import './index.css';
 
-let data = {
+const initialState = {
   app: {
     title: 'PMVC (PureMVC) - React',
-    description: 'pmvc app build with react as the view layer'
+    description: 'pmvc app build with react as the view layer',
   },
-  counterGlobal:{
-    count: 0
+  counterGlobal: {
+    count: 200,
   },
-  counterLocal:{
-    count: 0
-  }
+  counterLocal: {
+    count: 100,
+  },
 };
 
-if(typeof(Storage) !== 'undefined') {
-  data = JSON.parse(localStorage.getItem('pmvc-react')) || data;
-}
+// if (typeof (Storage) !== 'undefined') {
+//   initialState = JSON.parse(window.localStorage.getItem('pmvc-react')) || initialState;
+// }
 
-const initialState = data;
 const app = AppFacade.getInstance('app');
 
-
 app.render = cb => {
-  return ReactDOM.render(
-    <Provider facade={app}>
-      {app.Component}
+  ReactDOM.render(
+    <Provider facade={app} store={app.state}>
+      <App key="app" Mediator={AppMediator} />
     </Provider>,
-    document.getElementById('root'),
-    cb
+    document.getElementById('root')
   );
 };
+
 app.startup(initialState);
-
-
 
 // const app2 = AppFacade.getInstance('app2');
 // app2.render = cb => {

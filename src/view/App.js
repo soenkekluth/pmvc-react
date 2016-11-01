@@ -2,123 +2,89 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import SubView from './SubView';
-import {connect} from '../core/PMVCView';
+import AppMediator from './AppMediator';
+import {EventNames} from '../constants/AppConstants'
+import connect from '../core/connect';
+// import connectView from '../core/connectView';
 
 
 class App extends Component {
 
   static propTypes = {
-    title: React.PropTypes.string,
-    description: React.PropTypes.string,
-    count: React.PropTypes.number
+    appInfo: React.PropTypes.object,
+    counterGlobal: React.PropTypes.number
   };
 
-  static defaultProps = {
-    title: '',
-    description: '',
-    count: 0
+  static contextTypes = {
+    store: React.PropTypes.object
   };
 
 
-  // shouldComponentUpdate (nextProps, nextState) {
-  //   console.log('App shouldComponentUpdate', nextProps, nextState);
-  //   return false;
-  //   // return (
-  //   //   this.props.title !== nextProps.title ||
-  //   //   this.props.description !== nextProps.description ||
-  //   //   this.props.count !== nextProps.count
-  //   // );
+
+  // componentWillReceiveProps(nextProps){
+  //   console.log('App: componentWillReceiveProps', nextProps)
   // }
 
-  // componentWillReceiveProps(nextProps) {
-  //   console.log('App componentWillReceiveProps',nextProps);
-  //   // return nextProps;
+  // shouldComponentUpdate(nextProps, nextState){
+  //   console.log('App: shouldComponentUpdate', nextProps, nextState)
   // }
 
-  // // // @decorate(PMVCView.prototype. componentDidUpdate)
-  // // // @decorate(PMVCView.componentDidUpdate)
-  // componentDidUpdate(){
-  //   console.log('App componentDidUpdate')
-  //   // alert('hans');
-  //   // super.componentDidUpdate();
+  // componentWillUpdate(nextProps, nextState){
+  //   console.log('App: componentWillUpdate', nextProps, nextState)
   // }
 
+  // componentWillMount(){
+  //   console.log('App: componentWillMount');
+  // }
 
-  // componentDidMount() {
-  //   console.log('App componentDidMount');
-  //   return true;
+  // componentDidMount(){
+  //   console.log('App: componentDidMount');
   // }
 
 
-  mapStateToProps(state){
-    console.log('App mapStateToProps')
-    return {
-      appInfo: state.app,
-      counterGlobal: state.counterGlobal
-    }
+
+  onClick(){
+    const dispatch = this.props.dispatch;
+    dispatch(EventNames.CLICK_GLOBAL_COUNT);
   }
 
-
   render() {
-    console.log('App render()', this.props)
-    const sendEvent = this.props.sendEvent || this.context.sendEvent;
-    //onClick={sendEvent.bind(this, EventNames.APP_CLICK_GLOBAL_COUNT)}
-    // const sendEvent = super.sendEvent;
-    // const count = this.props.count || Math.random()*100;
-    const count = this.props.count ;
+    const {appInfo, counterGlobal} = this.props;
+
     return (
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to {this.props.title}</h2>
+          <h2>Welcome to {appInfo.title}</h2>
         </div>
         <p className="App-intro">
-          {this.props.description}
+          {appInfo.description}
         </p>
         <p>
           <a href="https://github.com/soenkekluth/pmvc">https://github.com/soenkekluth/pmvc</a>
         </p>
 
         <p>
-          <button>Click me</button>
+          <button onClick={this.onClick.bind(this)}>Click me</button>
         </p>
-        <div>clicked {count}</div>
+        <div>clicked {counterGlobal}</div>
         <br/>
 
-          <SubView ref="subview"/>
+        <SubView />
 
       </div>
     );
   }
 }
 
-export default connect(App);
 
-// console.log(App);
+function mapStateToProps(state){
 
-//  applyDecorators(App,{
-//   // componentDidMount:[decorate],
-//   componentDidUpdate:[decorate(PMVCView)],
-//   // shouldComponentUpdate:[configurable],
-//   // shouldComponentUpdate:[decorate],
-//   // componentDidMount:[decorate],
-//   // componentWillReceiveProps:[override, decorate],
-//   // componentWillMount:[decorate]
-//   // render:[decorate],
-// });
+  return {
+    appInfo: state.app,
+    counterGlobal: state.counterGlobal.count
+  }
+}
 
- // export default App;
-
-
-
-// export default applyDecorators(PMVCView.__proto__,{
-//   // componentDidMount:[decorate],
-//   // componentDidUpdate:[decorate],
-//   // shouldComponentUpdate:[decorate],
-//   // componentWillReceiveProps:[decorate],
-//   // componentWillMount:[decorate]
-//   // render:[decorate],
-// });
-//
-//
-// export default App;
+export default connect(mapStateToProps, AppMediator)(App);
+// export default connect(App, mapStateToProps, AppMediator);

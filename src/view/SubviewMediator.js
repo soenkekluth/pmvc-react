@@ -1,43 +1,36 @@
-import CoreMediator from '../core/CoreMediator';
-import { NotificationNames, EventNames } from '../constants/index';
+import { Mediator } from 'pmvc';
+import { NotificationNames, EventNames } from '../constants/AppConstants';
 import CounterProxy from '../model/CounterProxy';
+import CounterCommand from '../controller/CounterCommand';
 
-export default class SubviewMediator extends CoreMediator {
+export default class SubViewMediator extends Mediator {
 
-  static NAME = 'SubviewMediator';
+  static NAME = 'SubViewMediator';
 
-  counterGlobal = null;
-  counterLocal = null;
-
-  listNotificationInterests(){
-    return [
-      EventNames.SUBVIEW_GLOBAL_COUNT,
-      EventNames.SUBVIEW_LOCAL_COUNT,
-      NotificationNames.DATA_CHANGE
-    ];
+  listNotificationInterests() {
+    return [EventNames.SUBVIEW_LOCAL_COUNT];
   }
 
-  onStateChange(notification){
-    if (notification.getType() === this.counterGlobal.getName() || notification.getType() === this.counterLocal.getName()) {
-      this.view.setState({
-        counterGlobal: this.counterGlobal.count,
-        counterLocal: this.counterLocal.count
-      });
+
+  handleNotification(notification) {
+
+    if (notification.getName() === EventNames.SUBVIEW_LOCAL_COUNT) {
+
+
+      if (notification.body) {
+        this.view.setViewState({
+          counterLocal: notification.body.count
+        })
+      }
+
+
     }
   }
 
+
+
+
   onRegister() {
-
-    this.counterGlobal = this.facade.getProxy(CounterProxy.NAME);
-    this.counterLocal = this.facade.getProxy(CounterProxy.NAME_LOCAL);
-
-    this.addNotificationHandler(EventNames.SUBVIEW_GLOBAL_COUNT, this.counterGlobal.up.bind(this.counterGlobal));
-    this.addNotificationHandler(EventNames.SUBVIEW_LOCAL_COUNT, this.counterLocal.up.bind(this.counterLocal));
-    this.addNotificationHandler(NotificationNames.DATA_CHANGE, this.onStateChange.bind(this));
-
-    this.view.setState({
-      counterGlobal: this.counterGlobal.count,
-      counterLocal: this.counterLocal.count
-    });
+    // this.facade.addCommand(EventNames.SUBVIEW_LOCAL_COUNT, CounterCommand);
   }
 }

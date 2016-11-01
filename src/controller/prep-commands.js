@@ -5,7 +5,7 @@ import AppMediator from '../view/AppMediator';
 
 export class ModelPrepCommand extends SimpleCommand {
   execute(note) {
-    console.log('ModelPrepCommand execute()');
+    // console.log('ModelPrepCommand execute()');
     const initialState = note.getBody();
     // this.facade.setState(data);
 
@@ -18,7 +18,7 @@ export class ModelPrepCommand extends SimpleCommand {
 
 export class ViewPrepCommand extends SimpleCommand {
   execute(note) {
-    console.log('ViewPrepCommand execute()');
+    // console.log('ViewPrepCommand execute()');
     // this.facade.addMediator(new AppMediator());
   }
 }

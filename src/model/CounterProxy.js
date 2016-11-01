@@ -15,14 +15,19 @@ export default class CounterProxy extends CoreProxy {
   }
 
   up() {
-    super.setData({
+    this.setData({
       count: this.getData().count + 1
     });
   }
 
   down() {
-    super.setData({
+    this.setData({
       count: this.getData().count - 1
     });
+  }
+
+
+  get count(){
+    return this.getData().count;
   }
 }

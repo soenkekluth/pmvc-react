@@ -1,6 +1,6 @@
 import { MacroCommand } from 'pmvc';
-import { NotificationNames } from '../constants';
-import { ModelPrepCommand, ViewPrepCommand } from './prep-commands';
+import NotificationNames from '../NotificationNames';
+import { ModelPrepCommand, ViewPrepCommand } from '../../controller/prep-commands';
 
 export default class StartupCommand extends MacroCommand {
 
@@ -10,7 +10,7 @@ export default class StartupCommand extends MacroCommand {
  }
 
  execute(note) {
-   console.log('StartupCommand execute()');
+   // console.log('StartupCommand execute()');
    super.execute(note);
    this.facade.removeCommand(NotificationNames.STARTUP);
    this.facade.send(NotificationNames.RENDER);

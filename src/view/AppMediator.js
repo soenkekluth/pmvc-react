@@ -1,21 +1,34 @@
-import React from 'react';
-import assign from 'object-assign';
 import { Mediator } from 'pmvc';
-import AppProxy from '../model/AppProxy';
+import {NotificationNames, EventNames} from '../constants/AppConstants';
 import CounterProxy from '../model/CounterProxy';
-import App from './App';
-import {EventNames} from '../constants';
 
 export default class AppMediator extends Mediator {
 
   static NAME = 'AppMediator';
 
-  sendEvent(name, body, type) {
-    const counter = this.facade.getProxy(CounterProxy.NAME);
-    // console.log(this);
-     if(name === EventNames.APP_CLICK_GLOBAL_COUNT) {
-      counter.up();
-     }
-   }
+  constructor(name, view) {
+    super(AppMediator.NAME, view);
+  }
+
+  // handleNotification(notification) {
+  //   console.log('handleNotification',notification )
+  // }
+
+  // listNotificationInterests() {
+  //   return [];
+  // }
+
+  // handleNotification(notification) {
+  //   const name = notification.getName();
+  //   switch(name){
+  //     case EventNames.CLICK_GLOBAL_COUNT:
+  //       const counter = this.facade.getProxy(CounterProxy.NAME);
+  //       if(counter){
+  //         counter.up();
+  //       }
+  //   }
+  // }
 
 }
+
+// export default AppMediator;

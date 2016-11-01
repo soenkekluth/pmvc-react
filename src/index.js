@@ -3,7 +3,6 @@ import AppFacade from './facade/AppFacade';
 import React from 'react';
 import Provider from './core/Provider';
 import App from './view/App';
-import AppMediator from './view/AppMediator';
 import './index.css';
 
 const initialState = {
@@ -13,10 +12,7 @@ const initialState = {
   },
   counterGlobal: {
     count: 200,
-  },
-  counterLocal: {
-    count: 100,
-  },
+  }
 };
 
 // if (typeof (Storage) !== 'undefined') {
@@ -24,17 +20,18 @@ const initialState = {
 // }
 
 const app = AppFacade.getInstance('app');
+app.startup(initialState);
 
-app.render = cb => {
+// app.render = cb => {
+  // console.log('render');
   ReactDOM.render(
-    <Provider facade={app} store={app.state}>
-      <App key="app" Mediator={AppMediator} />
+    <Provider store={app}>
+      <App />
     </Provider>,
     document.getElementById('root')
   );
-};
+// };
 
-app.startup(initialState);
 
 // const app2 = AppFacade.getInstance('app2');
 // app2.render = cb => {

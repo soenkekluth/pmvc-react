@@ -4,16 +4,16 @@ import { ModelPrepCommand, ViewPrepCommand } from '../../controller/prep-command
 
 export default class StartupCommand extends MacroCommand {
 
- initializeMacroCommand() {
-   this.addSubCommand(ModelPrepCommand);
-   this.addSubCommand(ViewPrepCommand);
- }
+  initializeMacroCommand() {
+    this.addSubCommand(ModelPrepCommand);
+    this.addSubCommand(ViewPrepCommand);
+  }
 
- execute(note) {
+  execute(note) {
    // console.log('StartupCommand execute()');
-   super.execute(note);
-   this.facade.removeCommand(NotificationNames.STARTUP);
-   this.facade.send(NotificationNames.RENDER);
- }
+    super.execute(note);
+    this.facade.removeCommand(NotificationNames.STARTUP);
+    this.facade.send(NotificationNames.RENDER);
+  }
 }
 

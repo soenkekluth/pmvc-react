@@ -13,6 +13,8 @@ export default class CounterCommand extends SimpleCommand {
       case EventNames.SUBVIEW_LOCAL_COUNT:
         counter = this.facade.getProxy(CounterProxy.NAME_LOCAL);
         break;
+      default:
+        break;
     }
 
     if (counter) {

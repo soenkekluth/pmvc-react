@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import storeShape from '../utils/storeShape'
-import assign from 'object-assign';
 
 export default class Provider extends Component {
 

@@ -8,7 +8,7 @@ export default class DataChangeCommand extends SimpleCommand {
     localState[note.getType()] = data;
 
     const state = this.facade.getState();
-    if(Object.hasOwnProperty.call(state, note.getType())){
+    if (Object.hasOwnProperty.call(state, note.getType())) {
       this.facade.updateState(localState);
     }
   }

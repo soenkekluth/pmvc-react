@@ -1,39 +1,37 @@
 import PMVCMediator from './PMVCMediator';
-import assign from 'object-assign';
 import { applyDecorators, decorate, autobind, mixin } from 'core-decorators';
 
 const mediatorDecorators = {
 
   handleNotification(func) {
-    return notification => {
+    return (notification) => {
       PMVCMediator.prototype.handleNotification.call(this, notification);
       func.call(this, notification);
-    }
+    };
   },
 
   listNotificationInterests(func) {
-    return ()=> PMVCMediator.prototype.listNotificationInterests.call(this).concat(func.call(this));
+    return () => PMVCMediator.prototype.listNotificationInterests.call(this).concat(func.call(this));
   },
 
 
   onRegister(func) {
     return () => {
       func.call(this);
-      PMVCMediator.prototype.onRegister.call(this)
-    }
+      PMVCMediator.prototype.onRegister.call(this);
+    };
   },
 
   onRemove(func) {
     return () => {
       func.call(this);
-      PMVCMediator.prototype.onRemove.call(this)
-    }
+      PMVCMediator.prototype.onRemove.call(this);
+    };
   },
-}
+};
 
 
 const connectMediator = (TargetClass) => {
-
   const { prototype } = TargetClass;
   const propsToInherit = ['handleNotification', 'listNotificationInterests', 'onRegister', 'onRemove'];
   const propsToDecorate = [];
@@ -57,7 +55,7 @@ const connectMediator = (TargetClass) => {
 
   for (let i = 0, l = propsToInherit.length; i < l; i++) {
     const b = propsToInherit[i];
-    if(propsToDecorate.indexOf(b) === -1){
+    if (propsToDecorate.indexOf(b) === -1) {
       TargetClass.prototype[b] = PMVCMediator.prototype[b];
     }
   }
@@ -65,6 +63,6 @@ const connectMediator = (TargetClass) => {
   mixin(PMVCMediator.prototype)(TargetClass);
 
   return TargetClass;
-}
+};
 
 export default connectMediator;

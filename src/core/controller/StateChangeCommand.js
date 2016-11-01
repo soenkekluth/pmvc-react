@@ -1,5 +1,4 @@
 import { SimpleCommand } from 'pmvc';
-import NotificationNames from '../constants/NotificationNames';
 
 export default class StateChangeCommand extends SimpleCommand {
   execute(note) {

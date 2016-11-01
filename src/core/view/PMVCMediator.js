@@ -9,7 +9,7 @@ export default class PMVCMediator extends Mediator {
 
   constructor(name, view) {
     if(!name){
-      instanceCount = instanceCount+1;
+      instanceCount += 1;
       name = PMVCMediator.NAME+ '_'+instanceCount;
     }
     super(name, view);

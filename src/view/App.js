@@ -12,7 +12,7 @@ class App extends Component {
   };
 
   render() {
-    const {appInfo, counterGlobal} = this.props;
+    const {appInfo} = this.props;
 
     return (
       <div className="App">

@@ -4,6 +4,7 @@
   "homepage": "https://soenkekluth.github.io/pmvc-react",
   "private": true,
   "devDependencies": {
+    "gh-pages": "0.11.0",
     "react-scripts": "0.7.0"
   },
   "dependencies": {
@@ -19,6 +20,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "deploy": "gh-pages -d build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }

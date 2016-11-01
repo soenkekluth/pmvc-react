@@ -32,7 +32,7 @@ class SubView extends Component {
   render() {
 
     return (
-      <div>
+      <section>
         <h1>Subview</h1>
         <p>global clicked {this.props.counterGlobal}</p>
         <p>local clicked {this.state.counterLocal}</p>
@@ -40,9 +40,7 @@ class SubView extends Component {
           <button onClick={this.onClickGlobal.bind(this)}>click global</button>
           <button onClick={this.onClickLocal.bind(this)}>click local</button>
         </p>
-
-
-       </div>
+       </section>
     );
   }
 }

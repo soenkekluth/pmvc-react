@@ -18,13 +18,11 @@ export default class AppFacade extends PMVCFacade {
     return Facade.instanceMap[key];
   }
 
-
   initializeController() {
     super.initializeController();
     this.addCommand(EventNames.CLICK_GLOBAL_COUNT, CounterCommand);
     this.addCommand(EventNames.SUBVIEW_LOCAL_COUNT, CounterCommand);
   }
-
 
   // initializeView() {
   //   super.initializeView();

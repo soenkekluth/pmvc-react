@@ -18,6 +18,16 @@
   font-size: large;
 }
 
+section {
+  background-color: #222;
+  color: white;
+  display: inline-block;
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 2em;
+}
+
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

@@ -15,7 +15,6 @@ class PMVComponent extends Component {
     store: storeShape
   };
 
-
   constructor(props, context){
     console.log(props, context);
     super(props, context);
@@ -27,7 +26,6 @@ class PMVComponent extends Component {
       return;
     }
 
-    console.log('tryRegisterMediator', this);
     const facade = this.context.store || this.props.store;
     if (!facade) {
       console.error('no facade');
@@ -50,12 +48,10 @@ class PMVComponent extends Component {
 
 
   componentWillMount() {
-    // console.log('PMVComponent: componentWillMount');
     this.tryRegisterMediator();
   }
 
   componentDidMount() {
-    // console.log('PMVComponent: componentWillMount');
     this.tryRegisterMediator();
   }
 

@@ -68,13 +68,11 @@ export default class PMVCFacade extends Facade {
 
 
   unsubscribe(view) {
-    console.log('unsubscribe', view);
     if (view.mediator) {
       if (this.hasMediator(view.mediator)) {
         this.removeMediator(view.mediator);
         view.mediator = null;
       }
-      // this.mediator
     }
   }
 

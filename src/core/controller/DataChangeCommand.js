@@ -11,6 +11,5 @@ export default class DataChangeCommand extends SimpleCommand {
     if(Object.hasOwnProperty.call(state, note.getType())){
       this.facade.updateState(localState);
     }
-
   }
 }

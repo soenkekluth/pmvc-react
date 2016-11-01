@@ -42,7 +42,6 @@ export default class PMVCMediator extends Mediator {
     }
   }
 
-
   // sendEvent(name, body, type = 'Event') {
   //   this.send(name, body, type);
   // }

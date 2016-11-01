@@ -9,7 +9,5 @@ export default class StateChangeCommand extends SimpleCommand {
     if (typeof (Storage) !== 'undefined') {
       localStorage.setItem('pmvc-react', JSON.stringify(data));
     }
-
-    // this.facade.send(NotificationNames.RENDER);
   }
 }

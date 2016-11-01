@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { EventNames } from '../constants/AppConstants';
-import SubSubView from './SubSubView';
 import SubViewMediator from './SubViewMediator';
 import connect from '../core/view/connect';
 
@@ -9,11 +8,6 @@ class SubView extends Component {
 
   static propTypes = {
     counterGlobal: React.PropTypes.number
-  };
-
-
-  static contextTypes = {
-    store: React.PropTypes.object
   };
 
 

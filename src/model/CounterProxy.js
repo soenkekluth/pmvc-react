@@ -1,11 +1,11 @@
-import CoreProxy from '../core/CoreProxy';
+import PMVCProxy from '../core/model/PMVCProxy';
 import assign from 'object-assign';
 
 const initialState = {
   count: 0
 };
 
-export default class CounterProxy extends CoreProxy {
+export default class CounterProxy extends PMVCProxy {
 
   static NAME = 'counterGlobal';
   static NAME_LOCAL = 'counterLocal';

@@ -1,11 +1,7 @@
 import { Facade } from 'pmvc';
 import CounterCommand from '../controller/CounterCommand';
-import PMVCFacade from '../core/PMVCFacade';
-
-import { NotificationNames, EventNames } from '../constants/AppConstants';
-import App from '../view/App';
-import AppMediator from '../view/AppMediator';
-
+import PMVCFacade from '../core/facade/PMVCFacade';
+import { EventNames } from '../constants/AppConstants';
 
 export default class AppFacade extends PMVCFacade {
 

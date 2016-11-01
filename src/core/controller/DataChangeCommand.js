@@ -12,9 +12,5 @@ export default class DataChangeCommand extends SimpleCommand {
       this.facade.updateState(localState);
     }
 
-    if (typeof (Storage) !== 'undefined') {
-      localStorage.setItem('pmvc-react', JSON.stringify(data));
-    }
-
   }
 }

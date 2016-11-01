@@ -1,41 +1,38 @@
-import CoreMediator from './CoreMediator';
+import PMVCMediator from './PMVCMediator';
 import assign from 'object-assign';
-
-import { NotificationNames } from '../constants/AppConstants';
-import { applyDecorators, decorate, autobind, mixin, extendDescriptor, override, configurable } from 'core-decorators';
+import { applyDecorators, decorate, autobind, mixin } from 'core-decorators';
 
 const mediatorDecorators = {
 
   handleNotification(func) {
     return notification => {
-      if(notification.getName() === NotificationNames.STATE_CHANGE) {
-        this.updateView();
-      }
+      PMVCMediator.prototype.handleNotification.call(this, notification);
       func.call(this, notification);
     }
   },
 
   listNotificationInterests(func) {
-    return ()=> func.call(this).concat([NotificationNames.STATE_CHANGE]);
+    return ()=> PMVCMediator.prototype.listNotificationInterests.call(this).concat(func.call(this));
   },
 
 
   onRegister(func) {
     return () => {
       func.call(this);
-      this.updateView();
+      PMVCMediator.prototype.onRegister.call(this)
     }
   },
 
   onRemove(func) {
     return () => {
       func.call(this);
+      PMVCMediator.prototype.onRemove.call(this)
     }
   },
 }
 
 
-const inheritCoreMediator = (TargetClass) => {
+const connectMediator = (TargetClass) => {
 
   const { prototype } = TargetClass;
   const propsToInherit = ['handleNotification', 'listNotificationInterests', 'onRegister', 'onRemove'];
@@ -58,19 +55,16 @@ const inheritCoreMediator = (TargetClass) => {
     applyDecorators(TargetClass, decorators);
   }
 
-  //   const decorators = {};
   for (let i = 0, l = propsToInherit.length; i < l; i++) {
     const b = propsToInherit[i];
     if(propsToDecorate.indexOf(b) === -1){
-      TargetClass.prototype[b] = CoreMediator.prototype[b];
+      TargetClass.prototype[b] = PMVCMediator.prototype[b];
     }
   }
 
-  mixin(CoreMediator.prototype)(TargetClass);
-
-
+  mixin(PMVCMediator.prototype)(TargetClass);
 
   return TargetClass;
 }
 
-export default inheritCoreMediator;
+export default connectMediator;

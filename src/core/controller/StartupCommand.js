@@ -1,5 +1,5 @@
 import { MacroCommand } from 'pmvc';
-import NotificationNames from '../NotificationNames';
+import NotificationNames from '../constants/NotificationNames';
 import { ModelPrepCommand, ViewPrepCommand } from '../../controller/prep-commands';
 
 export default class StartupCommand extends MacroCommand {

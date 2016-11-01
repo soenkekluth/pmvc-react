@@ -1,13 +1,16 @@
 import { Mediator } from 'pmvc';
-import {EventNames, NotificationNames} from '../constants/AppConstants';
+import NotificationNames from '../constants/NotificationNames';
 
-export default class CoreMediator extends Mediator {
+var instanceCount = 0;
 
-  static NAME = 'CoreMediator';
+export default class PMVCMediator extends Mediator {
+
+  static NAME = 'PMVCMediator';
 
   constructor(name, view) {
     if(!name){
-      name = CoreMediator.NAME+ '_'+Math.round(Math.random()*1000);
+      instanceCount = instanceCount+1;
+      name = PMVCMediator.NAME+ '_'+instanceCount;
     }
     super(name, view);
   }
@@ -22,15 +25,6 @@ export default class CoreMediator extends Mediator {
     return [NotificationNames.STATE_CHANGE]
   }
 
-
-  // notificationMap = {};
-
-  // constructor(name, view) {
-  //   if(!name){
-  //     name = CoreMediator.NAME+ '_'+Math.round(Math.random()*1000);
-  //   }
-  //   super(name, view);
-  // }
 
   // addNotificationHandler(notificationName, handler) {
   //   this.notificationMap[notificationName] = handler;

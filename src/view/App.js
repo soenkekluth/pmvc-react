@@ -2,11 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import SubView from './SubView';
-import AppMediator from './AppMediator';
 import {EventNames} from '../constants/AppConstants'
-import connect from '../core/connect';
-// import connectView from '../core/connectView';
-
+import connect from '../core/view/connect';
 
 class App extends Component {
 
@@ -14,33 +11,6 @@ class App extends Component {
     appInfo: React.PropTypes.object,
     counterGlobal: React.PropTypes.number
   };
-
-  static contextTypes = {
-    store: React.PropTypes.object
-  };
-
-
-
-  // componentWillReceiveProps(nextProps){
-  //   console.log('App: componentWillReceiveProps', nextProps)
-  // }
-
-  // shouldComponentUpdate(nextProps, nextState){
-  //   console.log('App: shouldComponentUpdate', nextProps, nextState)
-  // }
-
-  // componentWillUpdate(nextProps, nextState){
-  //   console.log('App: componentWillUpdate', nextProps, nextState)
-  // }
-
-  // componentWillMount(){
-  //   console.log('App: componentWillMount');
-  // }
-
-  // componentDidMount(){
-  //   console.log('App: componentDidMount');
-  // }
-
 
 
   onClick(){
@@ -86,5 +56,5 @@ function mapStateToProps(state){
   }
 }
 
-export default connect(mapStateToProps, AppMediator)(App);
-// export default connect(App, mapStateToProps, AppMediator);
+export default connect(mapStateToProps)(App);
+

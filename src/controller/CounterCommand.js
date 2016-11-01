@@ -1,6 +1,5 @@
 import { SimpleCommand } from 'pmvc';
 import { EventNames } from '../constants/AppConstants';
-import AppMediator from '../view/AppMediator';
 import CounterProxy from '../model/CounterProxy';
 
 export default class CounterCommand extends SimpleCommand {

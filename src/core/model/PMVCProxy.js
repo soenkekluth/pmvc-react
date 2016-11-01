@@ -1,11 +1,11 @@
 import { Proxy } from 'pmvc';
 import assign from 'object-assign';
 
-import { NotificationNames } from '../constants/AppConstants';
+import NotificationNames from '../constants/NotificationNames';
 
-export default class CoreProxy extends Proxy {
+export default class PMVCProxy extends Proxy {
 
-  static NAME = 'CoreProxy';
+  static NAME = 'PMVCProxy';
 
   constructor(name , data) {
     super(name);
@@ -13,13 +13,10 @@ export default class CoreProxy extends Proxy {
   }
 
   setData(data, sendNotification = true) {
-    // console.log(data, sendNotification, this.facade)
     super.setData(assign({}, this.data, data));
-
 
     if(sendNotification) {
       this.facade.sendNotification(NotificationNames.DATA_CHANGE, this.data, this.getName());
-      // this.facade.sendNotification(NotificationNames.DATA_CHANGE, this.data, this.getName());
     }
   }
 }

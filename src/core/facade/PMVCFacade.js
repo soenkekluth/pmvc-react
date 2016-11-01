@@ -1,13 +1,12 @@
 import { Facade } from 'pmvc';
-import NotificationNames  from './NotificationNames';
-import CoreMediator from './CoreMediator';
-import StartupCommand from './controller/StartupCommand';
-import RenderCommand from './controller/RenderCommand';
-import StateChangeCommand from './controller/StateChangeCommand';
-import DataChangeCommand from './controller/DataChangeCommand';
+import NotificationNames  from '../constants/NotificationNames';
+import PMVCMediator from '../view/PMVCMediator';
+import StartupCommand from '../controller/StartupCommand';
+import RenderCommand from '../controller/RenderCommand';
+import StateChangeCommand from '../controller/StateChangeCommand';
+import DataChangeCommand from '../controller/DataChangeCommand';
 import assign from 'object-assign';
-
-import inheritCoreMediator from './inheritCoreMediator';
+import connectMediator from '../view/connectMediator';
 
 export default class PMVCFacade extends Facade {
 
@@ -48,9 +47,7 @@ export default class PMVCFacade extends Facade {
   }
 
   sendEvent(name, body, type) {
-    // console.log('sendEvent', name);
     this.send(name, body, 'Event');
-    // this.sendNotification(name, body, 'Event');
   }
 
   updateState(chunk) {
@@ -93,12 +90,11 @@ export default class PMVCFacade extends Facade {
       }
     }
 
-
     if(!mediator) {
       if(!MediatorClass){
-        MediatorClass = CoreMediator;
+        MediatorClass = PMVCMediator;
       }
-      MediatorClass = (MediatorClass === CoreMediator ? CoreMediator : inheritCoreMediator(MediatorClass));
+      MediatorClass = (MediatorClass === PMVCMediator ? PMVCMediator : connectMediator(MediatorClass));
       mediator = new MediatorClass();
       mediator.setViewComponent(view);
       this.addMediator(mediator);
@@ -107,14 +103,12 @@ export default class PMVCFacade extends Facade {
     return mediator;
   }
 
-  mapView(ViewClass, MediatorClass = CoreMediator) {
+  mapView(ViewClass, MediatorClass = PMVCMediator) {
     this.mediatorMap.push({
       ViewClass : ViewClass,
       MediatorClass : MediatorClass
     });
   }
-
-
 
 
   getState() {
@@ -124,10 +118,6 @@ export default class PMVCFacade extends Facade {
   render(cb) {
 
   }
-
-  // initializeView() {
-  //   super.initializeView();
-  // }
 
   initializeController() {
     super.initializeController();

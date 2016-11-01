@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { EventNames } from '../constants/AppConstants';
 import SubSubView from './SubSubView';
-import SubSubViewMediator from './SubSubViewMediator';
 import SubViewMediator from './SubViewMediator';
+import connect from '../core/view/connect';
 
-
-import connect from '../core/connect';
 
 class SubView extends Component {
 

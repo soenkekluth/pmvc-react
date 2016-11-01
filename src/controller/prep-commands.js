@@ -1,7 +1,6 @@
 import { SimpleCommand } from 'pmvc';
 import AppProxy from '../model/AppProxy';
 import CounterProxy from '../model/CounterProxy';
-import AppMediator from '../view/AppMediator';
 
 export class ModelPrepCommand extends SimpleCommand {
   execute(note) {

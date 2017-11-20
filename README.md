@@ -1,5 +1,7 @@
 # [PMVC (PureMVC)](https://github.com/soenkekluth/pmvc) - React Example
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/soenkekluth/pmvc-react.svg)](https://greenkeeper.io/)
+
 ## Usage
 download or clone repo
 

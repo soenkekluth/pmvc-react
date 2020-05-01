@@ -15,7 +15,8 @@
     "object-assign": "4.1.0",
     "pmvc": "1.4.0",
     "react": "15.3.2",
-    "react-dom": "15.3.2"
+    "react-dom": "15.3.2",
+    "snyk": "^1.316.1"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -25,6 +26,9 @@
     "build": "react-scripts build",
     "deploy": "gh-pages -d build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
+    "eject": "react-scripts eject",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "snyk": true
 }
